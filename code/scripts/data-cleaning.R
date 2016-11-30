@@ -25,9 +25,11 @@ earnings_cols <- c("MN_EARN_WNE_P10")
 comp_measure_cols <- c(completion_cols, earnings_cols)
 
 # aggregate all selected columns
-all_cols <- c("UNITID", "INSTNM", demographics_cols, location_cols, comp_pred_cols, comp_measure_cols)
+all_cols <- c("UNITID", "INSTNM", "STABBR", demographics_cols, location_cols, comp_pred_cols, comp_measure_cols)
 
 raw_data <- orig_data[, all_cols]
+
+raw_data <- raw_data[raw_data$STABBR == "CA", ]
 
 # remove cols that has more than 75% NULLs
 num_nulls_in_col <- colSums(raw_data == "NULL" | is.na(raw_data))
