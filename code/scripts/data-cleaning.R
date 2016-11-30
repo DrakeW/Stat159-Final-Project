@@ -2,7 +2,7 @@ orig_data <- read.csv(file = "data/original-data/Most-Recent-Cohorts-All-Data-El
 
 # demographics predictor
 gender_cols <- c("UGDS_MEN", "UGDS_WOMEN")
-race_cols <- c("UGDS_WHITE", "UGDS_BLACK", "UGDS_HISP", "UGDS_ASIAN", "UGDS_AIAN")
+race_cols <- c("UGDS_WHITE", "UGDS_BLACK", "UGDS_HISP", "UGDS_ASIAN", "UGDS_AIAN", "UGDS_NHPI", "UGDS_2MOR")
 generation_cols <- c("FIRST_GEN")
 marital_status_cols <- c("MARRIED")
 
@@ -46,5 +46,29 @@ clean_data <- raw_data[, selected_cols]
 # remove rows that has NULL
 clean_data <- clean_data[!rowSums(clean_data == "NULL" | clean_data == "PrivacySuppressed" | is.na(clean_data)), ]
 
-write.csv(clean_data, file = "data/cleaned-data/clean-data.csv")
+# convert column type
+inst_name <- clean_data[,2]
+stateabbr_name <- clean_data[,3]
+city_name <- clean_data[,15]
+zip_name <- clean_data[,16]
 
+indx <- sapply(clean_data, is.factor)
+clean_data[indx] <- lapply(clean_data[indx], function(x) as.numeric(as.character(x)))
+
+clean_data[,2] = inst_name
+clean_data[,3] = stateabbr_name
+clean_data[,15] = city_name
+clean_data[,16] = zip_name
+
+# add diversity score column
+source("code/functions/diversity-score-func.R")
+
+clean_data$GENDER_DIV <- apply(clean_data, 1, get_gender_diversity_score)
+clean_data$RACE_DIV <- apply(clean_data, 1, get_racial_diversity_score)
+clean_data$MARITAL_STATUS_DIV <- get_marital_status_diversity_score(clean_data)
+clean_data$FIRST_GEN_DIV <- get_first_generation_diversity_score(clean_data)
+
+clean_data$DIV_SCORE <- apply(clean_data[c("GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")], 1, mean)
+
+# write to clean data file
+write.csv(clean_data, file = "data/cleaned-data/clean-data.csv")
