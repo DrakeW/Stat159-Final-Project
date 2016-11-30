@@ -2,7 +2,7 @@ orig_data <- read.csv(file = "data/original-data/Most-Recent-Cohorts-All-Data-El
 
 # demographics predictor
 gender_cols <- c("UGDS_MEN", "UGDS_WOMEN")
-race_cols <- c("UGDS_WHITE", "UGDS_BLACK", "UGDS_HISP", "UGDS_ASIAN", "UGDS_AIAN")
+race_cols <- c("UGDS_WHITE", "UGDS_BLACK", "UGDS_HISP", "UGDS_ASIAN", "UGDS_AIAN", "UGDS_NHPI", "UGDS_2MOR")
 generation_cols <- c("FIRST_GEN")
 marital_status_cols <- c("MARRIED")
 
