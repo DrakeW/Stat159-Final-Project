@@ -1,4 +1,4 @@
-ca_diversity_ratio_data <- read.csv()
+ca_diversity_ratio_data <- read.csv(file = "data/expected_proportion.csv")
 expected_gender_ratio <- ca_diversity_ratio_data[1, c("UGDS_MEN", "UGDS_WOMEN")]
 expected_race_ratio <- ca_diversity_ratio_data[1, c("UGDS_WHITE", "UGDS_BLACK", "UGDS_HISP", "UGDS_ASIAN", "UGDS_AIAN", "UGDS_NHPI", "UGDS_2MOR")]
 
