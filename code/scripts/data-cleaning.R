@@ -42,23 +42,38 @@ for (i in seq(num_nulls_in_col)) {
 }
 
 clean_data <- raw_data[, selected_cols]
+# diff data set with grad rate
+clean_data_w_grad_rate <- clean_data
+clean_data_w_grad_rate$C100_4 <- raw_data$C100_4
 
 # remove rows that has NULL
 clean_data <- clean_data[!rowSums(clean_data == "NULL" | clean_data == "PrivacySuppressed" | is.na(clean_data)), ]
+clean_data_w_grad_rate <- clean_data_w_grad_rate[!rowSums(clean_data_w_grad_rate == "NULL" | clean_data_w_grad_rate == "PrivacySuppressed" | is.na(clean_data_w_grad_rate)), ]
 
 # convert column type
-inst_name <- clean_data[,2]
-stateabbr_name <- clean_data[,3]
-city_name <- clean_data[,15]
-zip_name <- clean_data[,16]
 
-indx <- sapply(clean_data, is.factor)
-clean_data[indx] <- lapply(clean_data[indx], function(x) as.numeric(as.character(x)))
+col_type_convert <- function(clean_data) {
+  inst_name <- clean_data$INSTNM
+  stateabbr_name <- clean_data$STABBR
+  city_name <- clean_data$CITY
+  zip_name <- clean_data$ZIP
+  
+  indx <- sapply(clean_data, is.factor)
+  clean_data[indx] <- lapply(clean_data[indx], function(x) as.numeric(as.character(x)))
+  
+  indx <- sapply(clean_data, is.character)
+  clean_data[indx] <- lapply(clean_data[indx], function(x) as.numeric(x))
+  
+  clean_data$INSTNM = inst_name
+  clean_data$STABBR = stateabbr_name
+  clean_data$CITY = city_name
+  clean_data$ZIP = zip_name
+  
+  clean_data
+}
 
-clean_data[,2] = inst_name
-clean_data[,3] = stateabbr_name
-clean_data[,15] = city_name
-clean_data[,16] = zip_name
+clean_data <- col_type_convert(clean_data)
+clean_data_w_grad_rate <- col_type_convert(clean_data_w_grad_rate)
 
 # add diversity score column
 source("code/functions/diversity-score-func.R")
@@ -72,3 +87,4 @@ clean_data$DIV_SCORE <- apply(clean_data[c("GENDER_DIV", "RACE_DIV", "MARITAL_ST
 
 # write to clean data file
 write.csv(clean_data, file = "data/cleaned-data/clean-data.csv")
+write.csv(clean_data_w_grad_rate, file = "data/cleaned-data/clean-data-w-grad-rate.csv")
