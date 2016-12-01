@@ -22,7 +22,7 @@ set.seed(100)
 ridge.mod <- cv.glmnet(train_x, train_y, intercept = FALSE, standardize = FALSE, lambda = grid, alpha = 0)
 
 # save plot
-png("images/ridge-models-diversity-plot.png")
+png("images/ridge-diversity-models-plot.png")
 plot(ridge.mod, main = "Ridge Models Diversity Plot")
 dev.off()
 
