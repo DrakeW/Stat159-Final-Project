@@ -15,4 +15,4 @@ ols_summary <- data.frame(residual_sum_squares(ols.mod), total_sum_squares(ols.m
 rownames(ols_summary) <- "OLS"
 colnames(ols_summary) <- c("RSS", "TSS", "R Squared", "Residual Std. Error", "F Stat")
 
-save(ols.mod, ols.coef, ols_summary, file = "data/regressions/ols-model.RData")
+save(ols.mod, ols.coef, ols_summary, file = "data/regressions/ols-diversity-model.RData")
