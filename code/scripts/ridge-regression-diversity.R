@@ -15,7 +15,7 @@ full_data <- full_data[,-1]
 full_data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
 
 ### TRAIN ###
-train_x <- as.matrix(train_data)
+train_x <- as.matrix(train_data[,-19])
 train_y <- train_data$DIV_SCORE
 grid <- 10^seq(10, -2, length = 100)
 set.seed(100)
@@ -31,14 +31,14 @@ min_lambda <- ridge.mod$lambda.min
 best_fit <- glmnet(train_x, train_y, intercept = FALSE, standardize = FALSE, lambda = min_lambda, alpha = 0)
 
 ### TEST ###
-test_x <- as.matrix(test_data)
-target_y <- test_data$DIV_SCORE
+test_x <- as.matrix(test_data[,-19])
+target_y <- as.matrix(test_data$DIV_SCORE)
 # test set prediction -- MSE
 ridge.pred <- predict(best_fit, newx = test_x)
 ridge_test_mse <- mean((ridge.pred - target_y)^2)
 
 ### FULL DATASET ###
-full_x <- as.matrix(full_data)
+full_x <- as.matrix(full_data[,-19])
 full_y <- full_data$DIV_SCORE
 
 official_fit <- glmnet(full_x, full_y, intercept = FALSE, standardize = FALSE, lambda = min_lambda, alpha = 0)
