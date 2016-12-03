@@ -97,3 +97,43 @@ names(mn_earn_stats) <- c("Median", "First Quartile", "Third Quartile", "IQR", "
 mn_earn_stats <- as.data.frame(mn_earn_stats)
 colnames(mn_earn_stats) <- "MEAN EARNINGS"
 
+##GENDER_DIV 
+
+gen_div_stats <- c(median(college_data$GENDER_DIV), quantile(college_data$GENDER_DIV)[2], quantile(college_data$GENDER_DIV)[4],IQR(college_data$GENDER_DIV),mean(college_data$GENDER_DIV),sd(college_data$GENDER_DIV))
+names(gen_div_stats) <- c("Median", "First Quartile", "Third Quartile", "IQR", "Mean", "Std. Deviation")
+gen_div_stats <- as.data.frame(gen_div_stats)
+colnames(gen_div_stats) <- "GENDER DIV"
+
+##RACE_DIV 
+
+race_div_stats <- c(median(college_data$RACE_DIV), quantile(college_data$RACE_DIV)[2], quantile(college_data$RACE_DIV)[4],IQR(college_data$RACE_DIV),mean(college_data$RACE_DIV),sd(college_data$RACE_DIV))
+names(race_div_stats) <- c("Median", "First Quartile", "Third Quartile", "IQR", "Mean", "Std. Deviation")
+race_div_stats <- as.data.frame(race_div_stats)
+colnames(race_div_stats) <- "RACE DIV"
+
+##MARITAL_STATUS_DIV
+
+marital_div_stats <- c(median(college_data$MARITAL_STATUS_DIV), quantile(college_data$MARITAL_STATUS_DIV)[2], quantile(college_data$MARITAL_STATUS_DIV)[4],IQR(college_data$MARITAL_STATUS_DIV),mean(college_data$MARITAL_STATUS_DIV),sd(college_data$MARITAL_STATUS_DIV))
+names(marital_div_stats) <- c("Median", "First Quartile", "Third Quartile", "IQR", "Mean", "Std. Deviation")
+marital_div_stats <- as.data.frame(marital_div_stats)
+colnames(marital_div_stats) <- "MARITAL STATUS DIV"
+
+##FIRST_GEN_DIV
+
+first_gen_div_stats <- c(median(college_data$FIRST_GEN_DIV), quantile(college_data$FIRST_GEN_DIV)[2], quantile(college_data$FIRST_GEN_DIV)[4],IQR(college_data$FIRST_GEN_DIV),mean(college_data$FIRST_GEN_DIV),sd(college_data$FIRST_GEN_DIV))
+names(first_gen_div_stats) <- c("Median", "First Quartile", "Third Quartile", "IQR", "Mean", "Std. Deviation")
+first_gen_div_stats <- as.data.frame(first_gen_div_stats)
+colnames(first_gen_div_stats) <- "FIRST GEN DIV"
+
+##DIV_SCORE 
+
+div_score_stats <- c(median(college_data$DIV_SCORE), quantile(college_data$DIV_SCORE)[2], quantile(college_data$DIV_SCORE)[4],IQR(college_data$DIV_SCORE),mean(college_data$DIV_SCORE),sd(college_data$DIV_SCORE))
+names(div_score_stats) <- c("Median", "First Quartile", "Third Quartile", "IQR", "Mean", "Std. Deviation")
+div_score_stats <- as.data.frame(div_score_stats)
+colnames(div_score_stats) <- "DIV_SCORE"
+
+###Descriptive Stats of All Quantitative Variables 
+
+quant_var_stats <- data.frame(men_stats, women_stats, white_stats, black_stats, hisp_stats, asian_stats, aian_stats, first_gen_stats, not_first_gen_stats, married_stats, single_stats, pctfloan_stats, debt_mdn_stats, mn_earn_stats, gen_div_stats, race_div_stats, marital_div_stats, first_gen_div_stats, div_score_stats)
+
+###Correlation Matrix
