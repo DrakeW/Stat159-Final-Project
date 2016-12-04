@@ -14,7 +14,6 @@ get_racial_diversity_score <- function(school) {
   for (col in race_cols) {
     race_ratio <- c(race_ratio, school[[col]])
   }
-  cat(race_ratio)
   1 - sum(chi_squere(as.numeric(race_ratio), expected_race_ratio))
 }
 
