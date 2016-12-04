@@ -1,4 +1,4 @@
-college_data <- read.csv("data/clean-data.csv")
+college_data <- read.csv("data/cleaned-data/clean-data.csv")
 
 #Quantitative Variables 
 
@@ -214,4 +214,14 @@ quant_var_stats <- data.frame(men_stats, women_stats, white_stats, black_stats, 
 
 ###Correlation Matrix
 
+mat <- signif(cor(college_data[c(5:15,19,23:29)]),2)
+mat[lower.tri(mat)]=""
+correlation_matrix <- data.frame(mat)
 
+##eda-output.txt
+sink("data/eda-output.txt")
+print("Descriptive Statistics")
+print(quant_var_stats)
+print("Correlation Matrix")
+print(correlation_matrix)
+sink()
