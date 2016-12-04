@@ -1,0 +1,13 @@
+library(xtable)
+library(testthat)
+library(glmnet)
+library(pls)
+library(devtools)
+library(knitr)
+library(rmarkdown)
+
+sink("../../session-info.txt", append = TRUE)
+cat("Session Information\n\n")
+print(sessionInfo())
+devtools::session_info()
+sink()
