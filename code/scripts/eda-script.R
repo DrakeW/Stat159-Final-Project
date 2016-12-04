@@ -225,3 +225,7 @@ print(quant_var_stats)
 print("Correlation Matrix")
 print(correlation_matrix)
 sink()
+
+##save rdata 
+#save Rdata
+save(quant_var_stats, correlation_matrix, file="data/eda-output.RData")

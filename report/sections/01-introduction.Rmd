@@ -1,0 +1,3 @@
+#Introduction
+
+In this project we worked with a selection of the College Scorecard data, specifically using schools in California and variables related around diversity, graduation rates, and other important factors of the university such as degrees offer, debt, earnings, etc. We applied PLSR, PCR, Ridge, and Lasso regressions to our data, and ultimately drew conclusions based on the model that minimalized error. From there, we aim to make recommendations to our clients, a group of school administrators on how to improve their schools diversity and graduation rates based on this case study in California. 
