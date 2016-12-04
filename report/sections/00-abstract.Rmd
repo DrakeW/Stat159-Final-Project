@@ -1,1 +1,3 @@
-#Abstract `
+#Abstract
+
+In this project we address a group of administrators trying to make their school more competitive, both in diversity and graduation rates. We use the College Scorecard data to apply a predictive model in order to determine factors that may influence greater diversity and graduation rates for schools within California.  
