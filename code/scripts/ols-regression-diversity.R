@@ -4,7 +4,7 @@ data <- read.csv(file = "data/cleaned-data/clean-data.csv")
 source(file = "code/functions/regression-functions.R")
 
 data <- data[,-1]
-data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
+data[, c("UNITID", "UGDS_WOMEN", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
 
 # fit model with data
 ols.mod <- lm(DIV_SCORE~., data = data)

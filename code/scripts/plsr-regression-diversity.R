@@ -6,13 +6,13 @@ test_data <- read.csv("data/cleaned-data/test-clean-data.csv")
 full_data <- read.csv("data/cleaned-data/clean-data.csv")
 
 train_data <- train_data[,-1]
-train_data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
+train_data[, c("UNITID", "UGDS_WOMEN", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
 
 test_data <- test_data[,-1]
-test_data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
+test_data[, c("UNITID", "UGDS_WOMEN", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
 
 full_data <- full_data[,-1]
-full_data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
+full_data[, c("UNITID", "UGDS_WOMEN", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
 
 source(file = "code/functions/regression-functions.R")
 
@@ -31,7 +31,7 @@ best_comp_num <- which(plsr.fit$validation$PRESS == min(plsr.fit$validation$PRES
 ### TEST ###
 target_y <- test_data$DIV_SCORE
 # test set prediction -- MSE
-plsr.pred <- predict(plsr.fit, test_data[,-19], ncomp = best_comp_num)
+plsr.pred <- predict(plsr.fit, test_data[,-18], ncomp = best_comp_num)
 plsr_test_mse <- mean((plsr.pred - target_y)^2)
 
 ### FULL DATASET ###
