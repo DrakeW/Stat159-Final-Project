@@ -4,7 +4,7 @@ data <- read.csv(file = "data/cleaned-data/clean-data-w-grad-rate.csv")
 source(file = "code/functions/regression-functions.R")
 
 data <- data[,-1]
-data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "UGDS_WOMEN", "ICL")] <- NULL
+data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "UGDS_WOMEN", "ICLEVEL")] <- NULL
 
 # fit model with data
 ols.mod.grad <- lm(C100_4~., data = data)
