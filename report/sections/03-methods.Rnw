@@ -4,8 +4,10 @@
   \item \textbf{Ordinary Least Square methods} \\
   In statistics, OLS is a method for estimating the coefficients in a linear regression model, with the goal of minimizing the sum of the squares of the differences between the observed responses in the given dataset and those predicted by the linear model. (i.e.  $RSS = \sum_{i=1}^n(y_i - \beta_0 - \sum_{j=1}^p(\beta_{j}x_{ij}))^2$, where $\beta_0 ... \beta_p$ are the coefficients estimate)
   
-  \textbf{Ordinary Least Squares (OLS)} \\
-  This is a common linear regression model, and we use it as a benchmark to evaluate the performance of the other 4 regression models. 
+  \begin{enumerate}[1.]
+      \item \textbf{Ordinary Least Squares (OLS)} \\
+      This is a common linear regression model, and we use it as a benchmark to evaluate the performance of the other 4 regression models.
+  \end{enumerate} 
   
   \item \textbf{Shrinkage methods} \\
   Shrinkage methods involves fitting a model with all P predictor. However, the estimated coefficients are shrunken towards 0 relative to the least squares estimates. Shrinkage has the effect of reducing variance. Since after the process of shrinkage, some of the coefficients might be exactly 0, it also performs variable selection.
