@@ -21,8 +21,9 @@ plsr_div = as.vector(plsr_official_coef)
 div_df = data.frame(ols_div, ridge_div, lasso_div, pcr_div, plsr_div)
 rnames = names(ols.mod$coefficients[-1])
 row.names(div_df) = rnames
+colnames(div_df) = c("OLS", "Ridge", "Lasso", "PCR", "PLSR")
 
-div_table = xtable(format(div_df, digits=3), caption = "Regression Coefficients for All Diversity Models")
+div_table = xtable(div_df, digits=c(0,3,3,3,3,3), caption = "Regression Coefficients for All Diversity Models")
 print(div_table, comment=FALSE)
 @
 
@@ -30,7 +31,7 @@ print(div_table, comment=FALSE)
 div_mse_df = data.frame(row.names=c("Test MSE"), 
                     Ridge=ridge_test_mse, Lasso=lasso_test_mse, 
                     PCR=pcr_test_mse, PLSR=plsr_test_mse)
-div_mse_table = xtable(format(div_mse_df, digits=4), caption = "Test MSE Values for All Diversity Models")
+div_mse_table = xtable(div_mse_df, digits=4, caption = "Test MSE Values for All Diversity Models")
 print(div_mse_table, comment=FALSE)
 @
 
@@ -45,8 +46,9 @@ plsr_grad = as.vector(plsr_official_coef.grad)
 grad_df = data.frame(ols_grad, ridge_grad, lasso_grad, pcr_grad, plsr_grad)
 rnames = names(ols.mod.grad$coefficients[-1])
 row.names(grad_df) = rnames
+colnames(grad_df) = c("OLS", "Ridge", "Lasso", "PCR", "PLSR")
 
-grad_table = xtable(format(grad_df, digits=3), caption = "Regression Coefficients for All Graduation Rate Models")
+grad_table = xtable(grad_df, digits=c(0,3,3,6,3,3), caption = "Regression Coefficients for All Graduation Rate Models")
 print(grad_table, comment=FALSE)
 @
 
@@ -54,6 +56,6 @@ print(grad_table, comment=FALSE)
 grad_mse_df = data.frame(row.names=c("Test MSE"), 
                     Ridge=ridge_test_mse.grad, Lasso=lasso_test_mse.grad, 
                     PCR=pcr_test_mse.grad, PLSR=plsr_test_mse.grad)
-grad_mse_table = xtable(format(grad_mse_df, digits=4), caption = "Test MSE Values for All Graduation Rate Models")
+grad_mse_table = xtable(grad_mse_df, digits=4, caption = "Test MSE Values for All Graduation Rate Models")
 print(grad_mse_table, comment=FALSE)
 @
