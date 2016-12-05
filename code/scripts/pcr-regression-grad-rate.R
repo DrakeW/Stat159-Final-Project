@@ -26,16 +26,16 @@ validationplot(pcr.fit.grad, val.type = "MSEP")
 dev.off()
 
 # model selection
-best_comp_num.grad <- which(pcr.fit.grad$validation$PRESS == min(pcr.fit.grad$validation$PRESS))
+best_comp_num <- which(pcr.fit.grad$validation$PRESS == min(pcr.fit.grad$validation$PRESS))
 
 ### TEST ###
 target_y <- test_data$C100_4
 # test set prediction -- MSE
-pcr.pred <- predict(pcr.fit.grad, test_data[,-19], ncomp = best_comp_num.grad)
+pcr.pred <- predict(pcr.fit.grad, test_data[,-19], ncomp = best_comp_num)
 pcr_test_mse.grad <- mean((pcr.pred - target_y)^2)
 
 ### FULL DATASET ###
-pcr_official_fit <- pcr(C100_4~., data = full_data, ncomp = best_comp_num.grad)
+pcr_official_fit <- pcr(C100_4~., data = full_data, ncomp = best_comp_num)
 pcr_official_coef.grad <- coef(pcr_official_fit)
 
 #investigate the models fit
@@ -44,4 +44,4 @@ rownames(pcr_summary.grad) <- "PCR"
 colnames(pcr_summary.grad) <- c("RSS", "TSS", "R Squared", "Residual Std. Error", "F Stat")
 
 # save RData
-save(pcr.fit.grad, best_comp_num.grad, pcr_test_mse.grad, pcr_official_coef.grad, pcr_summary.grad, file = "data/regressions/pcr-grad-rate-models.RData")
+save(pcr.fit.grad, best_comp_num, pcr_test_mse.grad, pcr_official_coef.grad, pcr_summary.grad, file = "data/regressions/pcr-grad-rate-models.RData")
