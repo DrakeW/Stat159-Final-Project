@@ -1,0 +1,43 @@
+\section{Data}
+
+\title{Source}
+The data used in this project was from the College Scorecard. The College Scorecard, introduced during the Obama administration, is maintained by the U.S. Department of Education. This program provides data around all colleges in the United States as a means of helping students compare different institutions to choose the most suitable for themself. The source of all of the data comes through federal reporting from colleges, such as the \href{https://www.nslds.ed.gov/nslds/nslds_SA/}{National Student Loan Data System} and the \href{http://nces.ed.gov/ipeds/}{Integrated Postsecondary Education Data System}. 
+
+\title{Content}
+The content of this data set is vast, covering many important aspects around institutions. Some of the information included in the data set as a whole is: 
+
+\begin{itemize}
+  \item Type of degree offered 
+  \item Amount of financial aid offered 
+  \item Acceptance rates 
+  \item Post graduation earnings 
+  \item Racial diversity of student body 
+\end{itemize}
+
+For our project we included all relevant information about diversity such as race, gender, marital status and completion rate, or the amount of students who successfully achieve their degree within 4 years. We limited our analysis to a case study of California, and included variables that were reported consistently across all institutions as we did not want inconsistent data to tarnish the analysis. 
+
+\title{Exploratory Data Analysis}
+
+For our analysis, we used 29 variables from the College Scorecard data set and observed 394 colleges. To get an overall understanding of some of our data, refer to the summary statistics below. 
+
+<<summary_table, echo = FALSE, results = tex>>= 
+library(xtable)
+library(Matrix)
+load(paste0("../data/eda-output.RData"))
+
+summary_table = xtable(format(quant_var_stats, digits=3), caption = "Summary Statistics for Quantitative Variables")
+print(summary_table, comment=FALSE)
+@
+
+Aside from the quantitative variables that were used, there was also a handful of categorical variables within the dataset. The variables \texttt{HIGHDEG},\texttt{PREDDEG}, \texttt{CONTROL}, and \texttt{ICLEVEL} were important categorical variables throughout our analysis. \texttt{HIGHDEG} represents the highest level of degree offered at an institution, where 0:4 stood for Non-degree granting, Certificate degree, Associate degree, Bachelor's degree, and Graduate degree, respectively. \texttt{PREDDEG} represents the predominant type of degree offered by the institution, following the same scale as  \texttt{HIGHDEG}. \texttt{CONTROL} indicated the control of the institution, where 1:3 stood for Public, Private Nonprofit, and Private For-Profit, respectively. Lastly, we have \texttt{ICLEVEL} which represented the level of the institution having 1:3 indicate a school was either a 4-year, 2-year, or less than 2-year institution. To get an overview of the categorical variable used in this analysis, refer to the below frequency table. 
+
+<<frequency_table, echo = FALSE, results = tex>>= 
+library(xtable)
+library(Matrix)
+load(paste0("../data/eda-output.RData"))
+
+frequency_table = xtable(format(frequency_comb, digits=3), caption = "Frequency and Frequency Proportion for Categorical Variables")
+print(frequency_table, comment=FALSE)
+@
+
+
