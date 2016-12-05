@@ -1,1 +1,19 @@
 #Data
+
+##Source 
+The data used in this project was from the College Scorecard. The College Scorecard, introduced during the Obama administration, is maintained by the U.S. Department of Education. This program provides data around all colleges in the United States as a means of helping students compare different institutions to choose the most suitable for themself. The source of all of the data comes through federal reporting from colleges, such as the [National Student Loan Data System](https://www.nslds.ed.gov/nslds/nslds_SA/) and the [Integrated Postsecondary Education Data System](http://nces.ed.gov/ipeds/). 
+
+##Content 
+The content of this data set is vast, covering many important aspects around institutions. Some of the information included in the data set as a whole is: 
+
+* Type of degree offered 
+* Amount of financial aid offered 
+* Acceptance rates 
+* Post graduation earnings 
+* Racial diversity of student body 
+
+For our project we included all relevant information about diversity such as race, gender, marital status and completion rate, or the amount of students who successfully achieve their degree within 4 years. We limited our analysis to a case study of California, and included variables that were reported consistently across all institutions as we did not want inconsistent data to tarnish the analysis. 
+
+##Variables 
+
+We used both quantitative and qualitative variables for our analysis.
