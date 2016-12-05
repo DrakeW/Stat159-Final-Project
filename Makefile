@@ -7,7 +7,7 @@ data_clean_script = code/scripts/data-cleaning.R
 data_train_test_split_script = code/scripts/train-test-split.R
 DATA = data/original-data/Most-Recent-Cohorts-All-Data-Elements.csv
 CLEAN_DATA = data/cleaned-data/*.csv
-report_sections = sections/*.Rmd
+report_sections = sections/*.Rnw
 
 all: data eda regressions report slides
 
@@ -83,8 +83,8 @@ session:
 	
 # assemble sections of report into one and convert it to PDF format
 report:
-	cd report; cat $(report_sections) > report.Rmd
-	Rscript -e "library(rmarkdown); render('report/report.Rmd', 'pdf_document')"
+	cd report; cat $(report_sections) > report.Rnw
+	Rscript -e "library(rmarkdown); render('report/report.Rnw', 'pdf_document')"
 	
 # generate slides
 slides:
