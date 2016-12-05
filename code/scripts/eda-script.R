@@ -254,4 +254,4 @@ dev.off()
 
 ##save rdata 
 
-save(quant_var_stats, correlation_matrix, file="data/eda-output.RData")
+save(quant_var_stats, correlation_matrix, frequency_comb, file="data/eda-output.RData")
