@@ -1,110 +1,83 @@
 [1] "Descriptive Statistics"
-                     MEN     WOMEN     WHITE      BLACK  HISPANIC      ASIAN
-Median         0.4213000 0.5787000 0.2505000 0.05800000 0.3793500 0.06610000
-First Quartile 0.2613500 0.5104500 0.1617750 0.03087500 0.2484500 0.03470000
-Third Quartile 0.4895500 0.7386500 0.3745500 0.11812500 0.5160250 0.13017500
-IQR            0.2282000 0.2282000 0.2127750 0.08725000 0.2675750 0.09547500
-Mean           0.3979424 0.6020579 0.2782703 0.09124822 0.3981490 0.09866066
-Std. Deviation 0.2102387 0.2102381 0.1592641 0.09396717 0.1961945 0.09453456
-               AMERICAN.INDIAN FIRST.GEN    MARRIED PCT.FEDERAL.LOAN
-Median             0.004150000 0.5234272 0.14828176        0.5572500
-First Quartile     0.001900000 0.4694517 0.09003041        0.1510500
-Third Quartile     0.008300000 0.5809840 0.19855955        0.7245000
-IQR                0.006400000 0.1115323 0.10852914        0.5734500
-Mean               0.006338832 0.5131578 0.15054079        0.4747807
-Std. Deviation     0.007577417 0.1057257 0.08114541        0.3036188
-               MEDIAN.DEBT MEAN.EARNINGS GENDER.DIV  RACE.DIV
-Median             9500.00      36750.00  0.9218785 0.6794942
-First Quartile     6422.75      29850.00  0.6700851 0.4547356
-Third Quartile    13566.00      42800.00  0.9898291 0.8198503
-IQR                7143.25      12950.00  0.3197440 0.3651147
-Mean              10776.81      38250.76  0.7835984 0.5279925
-Std. Deviation     5442.97      13065.53  0.2723482 0.4914024
-               MARITAL.STATUS.DIV FIRST.GEN.DIV DIV_SCORE
-Median                 0.97921996     0.9930987 0.8508112
-First Quartile         0.94845987     0.9769972 0.7444169
-Third Quartile         0.99359769     0.9989538 0.9117086
-IQR                    0.04513782     0.0219566 0.1672917
-Mean                   0.95637152     0.9782727 0.8115588
-Std. Deviation         0.09215972     0.0379019 0.1468483
+                     MEN     WOMEN     WHITE      BLACK  HISPANIC      ASIAN AMERICAN.INDIAN FIRST.GEN
+Median         0.4213000 0.5787000 0.2505000 0.05800000 0.3793500 0.06610000     0.004150000 0.5234272
+First Quartile 0.2613500 0.5104500 0.1617750 0.03087500 0.2484500 0.03470000     0.001900000 0.4694517
+Third Quartile 0.4895500 0.7386500 0.3745500 0.11812500 0.5160250 0.13017500     0.008300000 0.5809840
+IQR            0.2282000 0.2282000 0.2127750 0.08725000 0.2675750 0.09547500     0.006400000 0.1115323
+Mean           0.3979424 0.6020579 0.2782703 0.09124822 0.3981490 0.09866066     0.006338832 0.5131578
+Std. Deviation 0.2102387 0.2102381 0.1592641 0.09396717 0.1961945 0.09453456     0.007577417 0.1057257
+                  MARRIED PCT.FEDERAL.LOAN MEDIAN.DEBT MEAN.EARNINGS GENDER.DIV  RACE.DIV MARITAL.STATUS.DIV
+Median         0.14828176        0.5572500     9500.00      36750.00  0.9418903 0.7153716         0.97921996
+First Quartile 0.09003041        0.1510500     6422.75      29850.00  0.7391908 0.4509955         0.94845987
+Third Quartile 0.19855955        0.7245000    13566.00      42800.00  0.9870702 0.8361974         0.99359769
+IQR            0.10852914        0.5734500     7143.25      12950.00  0.2478794 0.3852019         0.04513782
+Mean           0.15054079        0.4747807    10776.81      38250.76  0.8159812 0.5766256         0.95637152
+Std. Deviation 0.08114541        0.3036188     5442.97      13065.53  0.2765213 0.4169456         0.09215972
+               FIRST.GEN.DIV DIV_SCORE
+Median             0.9930987 0.8631068
+First Quartile     0.9769972 0.7833317
+Third Quartile     0.9989538 0.9244396
+IQR                0.0219566 0.1411078
+Mean               0.9782727 0.8318127
+Std. Deviation     0.0379019 0.1299106
 [1] "Correlation Matrix"
-                   UGDS_MEN UGDS_WOMEN UGDS_WHITE UGDS_BLACK UGDS_HISP
-UGDS_MEN                  1         -1      0.019     -0.018     -0.13
-UGDS_WOMEN                           1     -0.019      0.018      0.13
-UGDS_WHITE                                      1      -0.25     -0.62
-UGDS_BLACK                                                 1     -0.11
-UGDS_HISP                                                            1
-UGDS_ASIAN                                                            
-UGDS_AIAN                                                             
-UGDS_NHPI                                                             
-UGDS_2MOR                                                             
-FIRST_GEN                                                             
-MARRIED                                                               
-PCTFLOAN                                                              
-DEBT_MDN                                                              
-MN_EARN_WNE_P10                                                       
-GENDER_DIV                                                            
-RACE_DIV                                                              
-MARITAL_STATUS_DIV                                                    
-FIRST_GEN_DIV                                                         
-DIV_SCORE                                                             
-                   UGDS_ASIAN UGDS_AIAN UGDS_NHPI UGDS_2MOR FIRST_GEN MARRIED
-UGDS_MEN                 0.11     0.035     -0.11      0.13     -0.11  -0.058
-UGDS_WOMEN              -0.11    -0.035      0.11     -0.13      0.11   0.058
-UGDS_WHITE              -0.11      0.27    -0.084      0.27      -0.5  -0.057
-UGDS_BLACK              -0.18      0.12      0.15    -0.037      0.13    0.12
-UGDS_HISP               -0.32     -0.18    -0.099     -0.39      0.66    0.13
-UGDS_ASIAN                  1     -0.18     0.045      0.17     -0.25   -0.14
-UGDS_AIAN                             1      0.19    -0.036      0.02    0.14
-UGDS_NHPI                                       1     0.043   -0.0027    0.11
-UGDS_2MOR                                                 1     -0.37   -0.27
-FIRST_GEN                                                           1    0.36
-MARRIED                                                                     1
-PCTFLOAN                                                                     
-DEBT_MDN                                                                     
-MN_EARN_WNE_P10                                                              
-GENDER_DIV                                                                   
-RACE_DIV                                                                     
-MARITAL_STATUS_DIV                                                           
-FIRST_GEN_DIV                                                                
-DIV_SCORE                                                                    
-                   PCTFLOAN DEBT_MDN MN_EARN_WNE_P10 GENDER_DIV RACE_DIV
-UGDS_MEN              -0.15    0.047            0.25       0.35    0.095
-UGDS_WOMEN             0.15   -0.047           -0.25      -0.35   -0.095
-UGDS_WHITE           -0.079     0.15            0.16     -0.044     0.47
-UGDS_BLACK             0.18    -0.08           -0.19     -0.077    -0.62
-UGDS_HISP             -0.02    -0.28           -0.43      -0.16    -0.19
-UGDS_ASIAN            -0.23     0.13            0.47       0.23    0.095
-UGDS_AIAN             0.096    -0.12           -0.22      -0.14    -0.01
-UGDS_NHPI              0.27    0.052          -0.045      -0.15   -0.094
-UGDS_2MOR             -0.15     0.17             0.3       0.15     0.18
-FIRST_GEN             -0.16    -0.57           -0.63      -0.16    -0.23
-MARRIED                0.28    -0.11           -0.33      -0.26    -0.14
-PCTFLOAN                  1     0.53         -0.0032      -0.42    -0.11
-DEBT_MDN                           1            0.54     -0.013     0.11
-MN_EARN_WNE_P10                                    1       0.33     0.21
-GENDER_DIV                                                    1    0.073
-RACE_DIV                                                               1
-MARITAL_STATUS_DIV                                                      
-FIRST_GEN_DIV                                                           
-DIV_SCORE                                                               
-                   MARITAL_STATUS_DIV FIRST_GEN_DIV DIV_SCORE
-UGDS_MEN                       0.0013        0.0026      0.24
-UGDS_WOMEN                    -0.0013       -0.0026     -0.24
-UGDS_WHITE                     -0.081         -0.15      0.35
-UGDS_BLACK                      0.071          0.23     -0.53
-UGDS_HISP                        0.13          0.13      -0.2
-UGDS_ASIAN                      -0.28         -0.11      0.14
-UGDS_AIAN                       0.092          0.15    -0.051
-UGDS_NHPI                       0.094          0.11     -0.12
-UGDS_2MOR                     -0.0012        -0.092      0.21
-FIRST_GEN                       0.037          0.48     -0.23
-MARRIED                          -0.4          0.26     -0.29
-PCTFLOAN                        0.052         -0.01     -0.28
-DEBT_MDN                       -0.049         -0.35     0.055
-MN_EARN_WNE_P10                  -0.1         -0.35      0.29
-GENDER_DIV                     -0.031        -0.039      0.52
-RACE_DIV                      0.00089         0.012      0.87
-MARITAL_STATUS_DIV                  1          0.24      0.16
-FIRST_GEN_DIV                                     1     0.094
-DIV_SCORE                                                   1
+                   UGDS_MEN UGDS_WOMEN UGDS_WHITE UGDS_BLACK UGDS_HISP UGDS_ASIAN UGDS_AIAN UGDS_NHPI UGDS_2MOR
+UGDS_MEN                  1         -1      0.019     -0.018     -0.13       0.11     0.035     -0.11      0.13
+UGDS_WOMEN                           1     -0.019      0.018      0.13      -0.11    -0.035      0.11     -0.13
+UGDS_WHITE                                      1      -0.25     -0.62      -0.11      0.27    -0.084      0.27
+UGDS_BLACK                                                 1     -0.11      -0.18      0.12      0.15    -0.037
+UGDS_HISP                                                            1      -0.32     -0.18    -0.099     -0.39
+UGDS_ASIAN                                                                      1     -0.18     0.045      0.17
+UGDS_AIAN                                                                                 1      0.19    -0.036
+UGDS_NHPI                                                                                           1     0.043
+UGDS_2MOR                                                                                                     1
+FIRST_GEN                                                                                                      
+MARRIED                                                                                                        
+PCTFLOAN                                                                                                       
+DEBT_MDN                                                                                                       
+MN_EARN_WNE_P10                                                                                                
+GENDER_DIV                                                                                                     
+RACE_DIV                                                                                                       
+MARITAL_STATUS_DIV                                                                                             
+FIRST_GEN_DIV                                                                                                  
+DIV_SCORE                                                                                                      
+                   FIRST_GEN MARRIED PCTFLOAN DEBT_MDN MN_EARN_WNE_P10 GENDER_DIV RACE_DIV MARITAL_STATUS_DIV
+UGDS_MEN               -0.11  -0.058    -0.15    0.047            0.25      -0.27    0.061             0.0013
+UGDS_WOMEN              0.11   0.058     0.15   -0.047           -0.25       0.27   -0.061            -0.0013
+UGDS_WHITE              -0.5  -0.057   -0.079     0.15            0.16     -0.057     0.17             -0.081
+UGDS_BLACK              0.13    0.12     0.18    -0.08           -0.19     -0.068    -0.36              0.071
+UGDS_HISP               0.66    0.13    -0.02    -0.28           -0.43     -0.078    0.083               0.13
+UGDS_ASIAN             -0.25   -0.14    -0.23     0.13            0.47       0.16     -0.2              -0.28
+UGDS_AIAN               0.02    0.14    0.096    -0.12           -0.22      -0.17   -0.087              0.092
+UGDS_NHPI            -0.0027    0.11     0.27    0.052          -0.045     -0.082   -0.034              0.094
+UGDS_2MOR              -0.37   -0.27    -0.15     0.17             0.3      0.069    0.022            -0.0012
+FIRST_GEN                  1    0.36    -0.16    -0.57           -0.63     -0.095    0.014              0.037
+MARRIED                            1     0.28    -0.11           -0.33      -0.23    -0.12               -0.4
+PCTFLOAN                                    1     0.53         -0.0032      -0.34  -0.0092              0.052
+DEBT_MDN                                             1            0.54     -0.043    0.011             -0.049
+MN_EARN_WNE_P10                                                      1       0.18    0.029               -0.1
+GENDER_DIV                                                                      1   -0.026             -0.032
+RACE_DIV                                                                                 1               0.15
+MARITAL_STATUS_DIV                                                                                          1
+FIRST_GEN_DIV                                                                                                
+DIV_SCORE                                                                                                    
+                   FIRST_GEN_DIV DIV_SCORE
+UGDS_MEN                  0.0026    -0.096
+UGDS_WOMEN               -0.0026     0.096
+UGDS_WHITE                 -0.15     0.079
+UGDS_BLACK                  0.23      -0.3
+UGDS_HISP                   0.13     0.057
+UGDS_ASIAN                 -0.11     -0.13
+UGDS_AIAN                   0.15     -0.13
+UGDS_NHPI                   0.11    -0.046
+UGDS_2MOR                 -0.092     0.047
+FIRST_GEN                   0.48    0.0019
+MARRIED                     0.26     -0.27
+PCTFLOAN                   -0.01     -0.18
+DEBT_MDN                   -0.35    -0.049
+MN_EARN_WNE_P10            -0.35     0.077
+GENDER_DIV                -0.042       0.5
+RACE_DIV                    0.16      0.83
+MARITAL_STATUS_DIV          0.24       0.3
+FIRST_GEN_DIV                  1      0.22
+DIV_SCORE                                1
