@@ -7,6 +7,7 @@ data_clean_script = code/scripts/data-cleaning.R
 data_train_test_split_script = code/scripts/train-test-split.R
 DATA = data/original-data/Most-Recent-Cohorts-All-Data-Elements.csv
 CLEAN_DATA = data/cleaned-data/*.csv
+report_sections = sections/*.Rmd
 
 all: data eda regressions report slides
 
