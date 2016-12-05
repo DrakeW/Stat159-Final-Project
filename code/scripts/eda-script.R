@@ -229,9 +229,9 @@ sink()
 ##Frequency Table
 
 frequencyct_table <- table(college_data$HIGHDEG, college_data$PREDDEG, college_data$CONTROL, college_data$ICLEVEL)
-frequencyct_final <- subset(as.data.frame(frequency_table), Freq>0)
+frequencyct_final <- subset(as.data.frame(frequencyct_table), Freq>0)
 frequencyprop_table <- prop.table(frequencyct_table)
-frequencyprop_final <- subset(as.data.frame(frequency_prop_table), Freq>0)
+frequencyprop_final <- subset(as.data.frame(frequencyprop_table), Freq>0)
 frequency_comb <- merge(frequencyct_final, frequencyprop_final, by=c("Var1", "Var2", "Var3", "Var4"))
 colnames(frequency_comb) <- c("Highest Degree", "Predominant Degree", "Control", "Institution Level", "Frequency", "Frequency Proportion")
 
