@@ -1,0 +1,59 @@
+\section{Results}
+
+After fitting all models, we summarize all regression coefficients and test MSE values for diversity model in Table 1-2.
+
+<<div_table, echo=FALSE, results=tex>>=
+library(xtable)
+library(Matrix)
+load(paste0("../data/regressions/ols-diversity-model.RData"))
+load(paste0("../data/regressions/ols-grad-rate-model.RData"))
+model_name = c("ridge", "lasso", "pcr", "plsr")
+for (i in model_name) {
+  load(paste0("../data/regressions/", i, "-diversity-models.RData"))
+  load(paste0("../data/regressions/", i, "-grad-rate-models.RData"))
+}
+
+ols_div = as.vector(ols.coef[-1])
+ridge_div = as.vector(ridge_official_coef[-1])
+lasso_div = as.vector(lasso_official_coef[-1])
+pcr_div = as.vector(pcr_official_coef)
+plsr_div = as.vector(plsr_official_coef)
+div_df = data.frame(ols_div, ridge_div, lasso_div, pcr_div, plsr_div)
+rnames = names(ols.mod$coefficients[-1])
+row.names(div_df) = rnames
+
+div_table = xtable(format(div_df, digits=3), caption = "Regression Coefficients for All Diversity Models")
+print(div_table, comment=FALSE)
+@
+
+<<div_mse_table, echo=FALSE, results=tex>>=
+div_mse_df = data.frame(row.names=c("Test MSE"), 
+                    Ridge=ridge_test_mse, Lasso=lasso_test_mse, 
+                    PCR=pcr_test_mse, PLSR=plsr_test_mse)
+div_mse_table = xtable(format(div_mse_df, digits=4), caption = "Test MSE Values for All Diversity Models")
+print(div_mse_table, comment=FALSE)
+@
+
+In terms of the graduation models, we display the results in Table 3-4.
+
+<<grad_table, echo=FALSE, results=tex>>=
+ols_grad = as.vector(ols.coef.grad[-1])
+ridge_grad = as.vector(ridge_official_coef.grad[-1])
+lasso_grad = as.vector(lasso_official_coef.grad[-1])
+pcr_grad = as.vector(pcr_official_coef.grad)
+plsr_grad = as.vector(plsr_official_coef.grad)
+grad_df = data.frame(ols_grad, ridge_grad, lasso_grad, pcr_grad, plsr_grad)
+rnames = names(ols.mod.grad$coefficients[-1])
+row.names(grad_df) = rnames
+
+grad_table = xtable(format(grad_df, digits=3), caption = "Regression Coefficients for All Graduation Rate Models")
+print(grad_table, comment=FALSE)
+@
+
+<<grad_mse_table, echo=FALSE, results=tex>>=
+grad_mse_df = data.frame(row.names=c("Test MSE"), 
+                    Ridge=ridge_test_mse.grad, Lasso=lasso_test_mse.grad, 
+                    PCR=pcr_test_mse.grad, PLSR=plsr_test_mse.grad)
+grad_mse_table = xtable(format(grad_mse_df, digits=4), caption = "Test MSE Values for All Graduation Rate Models")
+print(grad_mse_table, comment=FALSE)
+@
