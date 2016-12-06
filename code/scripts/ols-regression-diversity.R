@@ -3,8 +3,15 @@ data <- read.csv(file = "data/cleaned-data/clean-data.csv")
 
 source(file = "code/functions/regression-functions.R")
 
+gender_cols <- c("UGDS_MEN", "UGDS_WOMEN")
+race_cols <- c("UGDS_WHITE", "UGDS_BLACK", "UGDS_HISP", "UGDS_ASIAN", "UGDS_AIAN", "UGDS_NHPI", "UGDS_2MOR")
+generation_cols <- c("FIRST_GEN")
+marital_status_cols <- c("MARRIED")
+
+directly_related_cols <- c(gender_cols,race_cols,generation_cols,marital_status_cols, "UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")
+
 data <- data[,-1]
-data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
+data[, directly_related_cols] <- NULL
 
 # fit model with data
 ols.mod <- lm(DIV_SCORE~., data = data)

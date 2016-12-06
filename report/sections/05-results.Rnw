@@ -1,0 +1,68 @@
+\section{Results}
+
+To understand the data, we computed descriptive statistics and summaries of all variables and generated corresponding plots in EDA phase, which can be found in \texttt{data/eda-output.txt} and \texttt{images}. Since we are interested in studying the factors that affect diversity or graduation rates, we also obtained matrix of correlations. Please refer to eda-output.txt in the data section of this report, as the matrix is large. 
+
+We regressed diversity scores and graduation rates on different predictors separately. For diversity model, after fitting all models to the full data sets, we summarized coefficients and test MSE values. While the coefficients vary across models, we can spot some trends shared in common. The predictor that had the largest effect on diversity score was level of institution \texttt{ICLEVEL}, which conveys the highest level of award offered at the institution: 4-year, 2-year, or less-than-2-year. There are several other less influential elements that identify the degree profile of the institution including highest degree \texttt{HIGHDEG} and predominant undergraduate degree \texttt{PREDDEG}. Percent of undergraduates receiving federal Loans \texttt{PCTFLOAN} and governance structure \texttt{CONTROL} (public/private nonprofit/private for-profit) are also identified as related predictors by all models except Lasso. In contrast, the predictors \texttt{DEBT\_MDN} and \texttt{MN\_EARN\_WNE\_P10}, which stand for cumulative median debt and mean earnings, barely affect diversity of colleges.
+
+<<div_table, echo=FALSE, results=tex>>=
+library(xtable)
+library(Matrix)
+load("../data/eda-output.RData")
+load("../data/regressions/ols-diversity-model.RData")
+load("../data/regressions/ols-grad-rate-model.RData")
+model_name = c("ridge", "lasso", "pcr", "plsr")
+for (i in model_name) {
+  load(paste0("../data/regressions/", i, "-diversity-models.RData"))
+  load(paste0("../data/regressions/", i, "-grad-rate-models.RData"))
+}
+
+ols_div = as.vector(ols.coef[-1])
+ridge_div = as.vector(ridge_official_coef[-1])
+lasso_div = as.vector(lasso_official_coef[-1])
+pcr_div = as.vector(pcr_official_coef)
+plsr_div = as.vector(plsr_official_coef)
+div_df = data.frame(ols_div, ridge_div, lasso_div, pcr_div, plsr_div)
+rnames = names(ols.mod$coefficients[-1])
+row.names(div_df) = rnames
+colnames(div_df) = c("OLS", "Ridge", "Lasso", "PCR", "PLSR")
+
+div_table = xtable(div_df, digits=c(0,3,3,3,3,3), caption = "Regression Coefficients for All Diversity Models")
+print(div_table, comment=FALSE)
+@
+
+In order to see which regression is the best fit for our data set, we can take a closer look at mean square errors on test data sets to examine their quality. While all the models had relatively close MSEs, the two that were the lowest were the PCR and PLSR regressions. Therefore, it would appear these were the most suitable for predicting the diversity score.
+
+<<div_mse_table, echo=FALSE, results=tex>>=
+div_mse_df = data.frame(row.names=c("Test MSE"), 
+                    Ridge=ridge_test_mse, Lasso=lasso_test_mse, 
+                    PCR=pcr_test_mse, PLSR=plsr_test_mse)
+div_mse_table = xtable(div_mse_df, digits=4, caption = "Test MSE Values for All Diversity Models")
+print(div_mse_table, comment=FALSE)
+@
+
+To analyze factors that affect graduation rates, we generated another model. Surprisingly, Lasso eliminated all variables except \texttt{MN\_EARN\_WNE\_P10} though the coefficient estimate for \texttt{MN\_EARN\_WNE\_P10} is pretty close to 0. And OLS generated an oddly large estimate for \texttt{UGDS\_AIAN}, which might result from outliers. Among the rest predictors, \texttt{UGDS\_MEN}, which reflects male-to-female ratio, had a relatively large coefficient, which makes it a prominent predictor. \texttt{FIRST\_GEN}, which calculates the share of students in which neither parent completed college, also affects the graduation rates. Other influential predicts include those related to ethnic ratio (\texttt{UGDS\_*}) or degree profile such as \texttt{PREDDEG} as explained in the previous model.
+
+<<grad_table, echo=FALSE, results=tex>>=
+ols_grad = as.vector(ols.coef.grad[-1])
+ridge_grad = as.vector(ridge_official_coef.grad[-1])
+lasso_grad = as.vector(lasso_official_coef.grad[-1])
+pcr_grad = as.vector(pcr_official_coef.grad)
+plsr_grad = as.vector(plsr_official_coef.grad)
+grad_df = data.frame(ols_grad, ridge_grad, lasso_grad, pcr_grad, plsr_grad)
+rnames = names(ols.mod.grad$coefficients[-1])
+row.names(grad_df) = rnames
+colnames(grad_df) = c("OLS", "Ridge", "Lasso", "PCR", "PLSR")
+
+grad_table = xtable(grad_df, digits=c(0,3,3,6,3,3), caption = "Regression Coefficients for All Graduation Rate Models")
+print(grad_table, comment=FALSE)
+@
+
+In terms of model comparison, PCR and PLSR fit better on the data sets, which means dimention reduction methods generally outperform shrinkage methods on our data sets.
+
+<<grad_mse_table, echo=FALSE, results=tex>>=
+grad_mse_df = data.frame(row.names=c("Test MSE"), 
+                    Ridge=ridge_test_mse.grad, Lasso=lasso_test_mse.grad, 
+                    PCR=pcr_test_mse.grad, PLSR=plsr_test_mse.grad)
+grad_mse_table = xtable(grad_mse_df, digits=4, caption = "Test MSE Values for All Graduation Rate Models")
+print(grad_mse_table, comment=FALSE)
+@

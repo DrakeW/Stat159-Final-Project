@@ -5,14 +5,22 @@ train_data <- read.csv("data/cleaned-data/train-clean-data.csv")
 test_data <- read.csv("data/cleaned-data/test-clean-data.csv")
 full_data <- read.csv("data/cleaned-data/clean-data.csv")
 
+gender_cols <- c("UGDS_MEN", "UGDS_WOMEN")
+race_cols <- c("UGDS_WHITE", "UGDS_BLACK", "UGDS_HISP", "UGDS_ASIAN", "UGDS_AIAN", "UGDS_NHPI", "UGDS_2MOR")
+generation_cols <- c("FIRST_GEN")
+marital_status_cols <- c("MARRIED")
+
+directly_related_cols <- c(gender_cols,race_cols,generation_cols,marital_status_cols, "UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")
+
+
 train_data <- train_data[,-1]
-train_data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
+train_data[, directly_related_cols] <- NULL
 
 test_data <- test_data[,-1]
-test_data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
+test_data[, directly_related_cols] <- NULL
 
 full_data <- full_data[,-1]
-full_data[, c("UNITID", "INSTNM", "STABBR", "CITY", "ZIP", "GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")] <- NULL
+full_data[, directly_related_cols] <- NULL
 
 source(file = "code/functions/regression-functions.R")
 
@@ -31,7 +39,7 @@ best_comp_num <- which(plsr.fit$validation$PRESS == min(plsr.fit$validation$PRES
 ### TEST ###
 target_y <- test_data$DIV_SCORE
 # test set prediction -- MSE
-plsr.pred <- predict(plsr.fit, test_data[,-19], ncomp = best_comp_num)
+plsr.pred <- predict(plsr.fit, test_data[,-ncol(train_data)], ncomp = best_comp_num)
 plsr_test_mse <- mean((plsr.pred - target_y)^2)
 
 ### FULL DATASET ###

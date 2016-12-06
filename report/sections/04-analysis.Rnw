@@ -1,0 +1,29 @@
+\section{Analysis}
+
+\begin{enumerate}[]
+    \item \textbf{Data Processing} \\
+    Because of the massive size of our raw data set, a series of data cleaning tasks need to be performed in order to make the analysis feasible. And our data cleaning includes the following steps:
+    \begin{enumerate}[1.]
+        \item \textbf{Removing unrelated columns} \\
+        The original data set has more than 1700 columns but we certainly don't need to use all of them. Since we are measuring competitiveness in terms of diversity and completion rate, we picked related columns like \textbf{UGDS\_MEN, UGDS\_WOMEN, UGDS\_WHITE, C100\_4} etc.
+        
+        \item \textbf{Converting column types to numeric} \\
+        The columns of data we read in are mostly of type character and factor, so we need to convert them to numeric values for further computation and regression.
+        
+        \item \textbf{Dealing with NAs and non-computable values} \\
+        There are a lot of missing values in columns like \textbf{C100\_4} (completion rate) which are essential to our regression, so what we did is we first removed columns that has more than 75\% NAs in it, and then we delete rows with NAs or with non-numeric data ("PrivacySuppressed" in our case). This left us with 394 rows in our data set and 24 columns. And since there are a lot of NAs in completion rate column, we chose to produce a separate data set for regression on that column, which ended up having about 105 rows in total.
+        
+        \item \textbf{Calculating diversity score} \\
+        We need a way to numerically measure diversity of each school, so we came up with our own diversity score formula. In order to define diversity in terms of \textbf{Gender, Race, Marital Status, and ratio of First Generation Student}, we calculated the \textbf{chi-square} ($x_c^2 = \sum\frac{(O_i - E_i)^2}{E_i}$) of columns belonged those those 4 categories separately as their own diversity scores, then take the average as the final diversity score.
+        
+        \item \textbf{Save to data files} \\
+        In order to access the cleaned data more efficiently, we saved them to separate files from the raw data.
+    \end{enumerate}
+    
+    \item \textbf{Training and Testing Data Sets} \\
+    In order to benefit from running cross validation on several regression models, another step we took before building our model was to take a set of data for model building and another for testing model performance. The set of data used to build the model, our training set is 300 (out of 394) rows randomly selected from our cleaned data set for diversity regressions, and 80 rows (out of 105) from our data set for completion rate regressions, using the $sample()$ function and the rest of rows are the test set. We also used the $set.seed()$ function for reproducibility.
+    
+    \item \textbf{Model Building Process} \\
+    For each of our regressions we fit the model to our training set after performing 10-fold-cross-validation and resampling the data. For the lasso and ridge regressions, we use the function $cv.glmnet()$ to apply the model and perform the cross validation whereas with the PCR and PLSR regression models, we simply use the $pcr()$ and $plsr()$ functions and set the validation argument to "CV". After we have fit the functions to our data, we selected the best fit model looking for the minimum values of \$lambda.min for the lasso and ridge regressions and of \$validation\$PRESS for the PLSR and PCR regressions. Once we selected our best models, best\_comp\_num in our PCR and PLSR regressions and min\_lambda in our ridge and lasso regressions, we use our test set to compute the Mean Square Error to compare all of our best models. Finally to finish off our regressions we used the full set of data to get our actual coefficients for the models. The full data set was used in combination with our regression functions to compute summary statistics such as $R^{2}$, F-Statistic, and more.
+
+\end{enumerate}

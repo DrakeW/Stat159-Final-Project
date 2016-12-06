@@ -5,3 +5,5 @@
 .DS_Store
 *.Rproj
 *Most-Recent-*.csv
+.Rapp.history
+.gitkeep
