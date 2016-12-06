@@ -25,7 +25,7 @@ earnings_cols <- c("MN_EARN_WNE_P10")
 comp_measure_cols <- c(completion_cols, earnings_cols)
 
 # aggregate all selected columns
-all_cols <- c("UNITID", "INSTNM", "STABBR", demographics_cols, location_cols, comp_pred_cols, comp_measure_cols)
+all_cols <- c("LATITUDE", "LONGITUDE", "UNITID", "INSTNM", "STABBR", demographics_cols, location_cols, comp_pred_cols, comp_measure_cols)
 
 raw_data <- orig_data[, all_cols]
 
@@ -86,5 +86,12 @@ clean_data$FIRST_GEN_DIV <- get_first_generation_diversity_score(clean_data)
 clean_data$DIV_SCORE <- apply(clean_data[c("GENDER_DIV", "RACE_DIV", "MARITAL_STATUS_DIV", "FIRST_GEN_DIV")], 1, mean)
 
 # write to clean data file
+write.csv(clean_data, file = "data/cleaned-data/clean-data-w-geo.csv")
+
+clean_data$LATITUDE <- NULL
+clean_data$LONGITUDE <- NULL
+clean_data_w_grad_rate$LATITUDE <- NULL
+clean_data_w_grad_rate$LONGITUDE <- NULL
+
 write.csv(clean_data, file = "data/cleaned-data/clean-data.csv")
 write.csv(clean_data_w_grad_rate, file = "data/cleaned-data/clean-data-w-grad-rate.csv")

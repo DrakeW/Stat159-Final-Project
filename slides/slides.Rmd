@@ -122,7 +122,7 @@ div_table = xtable(div_df, digits=c(0,4,4,4,4,4), caption = "Regression Coeffici
 print(div_table, comment=FALSE, type="html")
 ```
 
-## Results
+## Results - Diversity Regression
 
 ```{r results='asis', echo=FALSE}
 ols_grad = as.vector(ols.coef.grad[-1])
@@ -139,9 +139,7 @@ grad_table = xtable(grad_df, digits=c(0,3,3,4,3,3), caption = "Regression Coeffi
 print(grad_table, comment=FALSE, type="html")
 ```
 
-## Results
-
-For both models, PCR and PLSR fit better on the data sets, which means dimentaion reduction methods generally outperform shrinkage methods on our data sets.
+## Results - Graduation Regression
 
 ```{r results='asis', echo=FALSE}
 div_mse_df = data.frame(row.names=c("Test MSE"), 
@@ -157,8 +155,30 @@ grad_mse_table = xtable(grad_mse_df, digits=3, caption = "Test MSE Values for Al
 print(grad_mse_table, comment=FALSE, type="html")
 ```
 
-## Conclusion
+## Conclusion - EDA
 
+From our exploratory data analysis, we were able to gain some insights into our intial data. 
 
+- For example, the variables that impacted our diversity score the most were those used to compute our racial diversity score, `UGDS_WHITE`, `UGDS_BLACK`, `UGDS_HISP`, `UGDS_ASIAN`, `UGDS_AIAN`, and `UGDS_NHPI`. This is to be expected as the disparities between racial diversity at the university were larger than those of gender. 
 
-        
+- Another interesting correlation that was discovered was between \texttt{PCTFLOAN} and minority groups such as `UGDS_BLACK` and  `UGDS_NHPI`. Looking at the Descriptive Statistics table in `data/eda-output.txt` we can see that on average the proportion of Black students at universities in California was less than 10\% and the proportion of Native Hawaiian and Pacific Islanders at universities in California was less than 1\%. 
+
+## Conclusion - Regression Analyses
+
+As our clients wished to compare themselves to other schools in relation to diversity and graduation rates, we ran two separate regression analyses upon the diversity score and graduation rates. 
+
+## Conclusion - Diversity Regression
+
+- We can see that the `ICLEVEL` variable had the largest impact upon our dependent variable `DIV_SCORE`. Referring back to the data section, `ICLEVEL` represented whether the institution was a 4-year, 2-year, or less that 2-year institution. As these factors are often indicators of other things about a university, it makes sense that they should play an important role in our regression on diversity.
+
+- Therefore, one recommendation for making your institution more competitive from a diversity stand point would be to offer 4-year programs. This will attract more students to the institution resulting in more diversity. We extend our recommendation to not just offering 4-year programs, but offering higher degrees as well, which goes hand-in-hand, as we saw that `HIGHDEG` was another predictor that had influenced diversity. This is similar in that students will be more attracted to attaining a higher degree, such as a Bachelors, as opposed to an Associates degree. 
+
+## Conclusion - Graduation Regression
+
+- One of the most interesting conclusions from this analysis is the correlation between `PCTFLOAN` and graduation rates. `PCTFLOAN` represents the share of student who receive federal loans. From this, we can infer that the greater the share of students that accepted federal loans to help pay for college, the more likely the student was to graduate. 
+
+- To increase the institutions graduation rates, we recommend that the group of administrators offer education programs for students about: 
+  
+  - Types of federal loans offered 
+  - How to determine if you need federal loans or not
+  - Plans for paying back federal loans after graduating

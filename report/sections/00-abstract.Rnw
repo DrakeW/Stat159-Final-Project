@@ -13,7 +13,7 @@
 
 \title{Final Project Report}
 \author{Junyu Wang, Jie Sun, Mingtao Fang, Nichole Rethmeier}
-\date{\today}
+\date{Dec 5th, 2016}
 
 \begin{document}
 <<setup, include=FALSE, cache=FALSE, echo=FALSE>>=

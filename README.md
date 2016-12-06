@@ -82,6 +82,7 @@ This section includes description of different make commands that you can use to
 12. `make slides` create slides from Rmd files
 13. `make clean` remove old artifacts
 14. `make tests` to run unit test in _tests_ directory
+15. `make shiny` to run shiny app
 
 
 Author

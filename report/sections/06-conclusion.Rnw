@@ -1,13 +1,29 @@
 \section{Conclusion}
 
-\title{Exploratory Data Analysis}
+\textbf{Exploratory Data Analysis}
 
 From our exploratory data analysis, we were able to gain some insights into our intial data. For example, the variables that impacted our diversity score the most were those used to compute our racial diversity score, \texttt{UGDS\_WHITE}, \texttt{UGDS\_BLACK}, \texttt{UGDS\_HISP}, \texttt{UGDS\_ASIAN}, \texttt{UGDS\_AIAN}, and \texttt{UGDS\_NHPI}. This is to be expected as the disparities between racial diversity at the university were larger than those of gender. 
 
 Another interesting correlation that was discovered during the exploratory data analysis was between \texttt{PCTFLOAN} and minority groups such as \texttt{UGDS\_BLACK} and  \texttt{UGDS\_NHPI}. Looking at the Descriptive Statistics table in \texttt{data/eda-output.txt} we can see that on average the proportion of Black students at universities in California was less than 10\% and the proportion of Native Hawaiian and Pacific Islanders at universities in California was less than 1\%. Therefore we can infer either that more federal loans were provided to minority students, which can be explained by government programs that want to encourage more minority students to attend college, or that minority students on average accepeted more federal loans, which could be due to minorities not having the ability to fully pay for college themselves. For example, the \href{https://www.apa.org/pi/ses/resources/publications/minorities.aspx}{American Psychological Association} states that "unemployment rates for African Americans are typically double those of Caucasian Americans" which could offer one possible explanation for the correlations seen in our data set. 
 
-\title{Regression Analyses}
+\textbf{Regression Analyses}
 
+As our clients wished to compare themselves to other schools in relation to diversity and graduation rates, we ran two separate regression analyses upon the diversity score and graduation rates. 
+
+\textbf{Diversity Regression}
+For the regression analysis on the diversity scores, as you can see in the Results section, the PCR regression had the lowest MSE at 0.0163. Therefore, we will use this model to make some general conclusions about regression. From this we can see that the \texttt{ICLEVEL} variable had the largest impact upon our dependent variable \texttt{DIV\_SCORE}. Referring back to the data section, \texttt{ICLEVEL} represented whether the institution was a 4-year, 2-year, or less that 2-year institution. As these factors are often indicators of other things about a university, it makes sense that they should play an important role in our regression on diversity. For example, it is typical that a 4-year institution awarding Bachelors degrees would be more likely to attract more students to it than an institution that only was only a less than 2-year level. Especially as students from a young age are encouraged to attend 4-year colleges out of high school. The \href{http://nces.ed.gov/fastfacts/display.asp?id=372}{National Center for Education Statistics} reports that in Fall of 2016 an estimated 13.3 million students attended 4-year colleges whereas only 7.2 million students attended 2-year colleges. As these 4-year institutions are attracting significantly more students than 2-year colleges, it makes sense that a larger student body would bring more diversity. Therefore, one recommendation for making your institution more competitive from a diversity stand point would be to offer 4-year programs. This will attract more students to the institution resulting in more diversity. We extend our recommendation to not just offering 4-year programs, but offering higher degrees as well, which goes hand-in-hand, as we saw that \texttt{HIGHDEG} was another predictor that had influenced diversity. This is similar in that students will be more attracted to attaining a higher degree, such as a Bachelors, as opposed to an Associates degree. 
+
+\textbf{Graduation Regression}
+
+From our regression analysis on the Graduation rates, we can see from the Results that the PLSR regression had the lowest MSE at 0.0342. Therefore, we will use the coefficients from this model to make our recommendations to the client. One of the most interesting conclusions from this analysis is the correlation between \texttt{PCTFLOAN} and graduation rates. \texttt{PCTFLOAN} represents the share of student who receive federal loans. From this, we can infer that the greater the share of students that accepted federal loans to help pay for college, the more likely the student was to graduate. There are a multitude of reasons that could potentially explain this strong correlation. For example, students who accepted federal loans can more easily afford college. This leads students to pay for college, so that they may not have to drop out due to financial insecurity, and also so that they do not have to work to put themself through school. It seems more likely for a student to finish school if they do not have to worry about working as well. Another possible explanation for this correlation is that students who have accepted loans are highly motivated to finish as they know they'll be paying off loans when they graduate. These are just some potential reasonings. Therefore, to increase the institutions graduation rates, we recommend that the group of administrators offer education programs for students about: 
+
+\begin{itemize}
+\item Types of federal loans offered 
+\item How to determine if you need federal loans or not
+\item Plans for paying back federal loans after graduating
+\end{itemize}
+
+As a result, these classes could help break the stigmas around student loans as scary everlasting burdens. It would help students understand how they can afford to graduate and to focus on their schooling so they can be successful. 
 
 
 \end{document}

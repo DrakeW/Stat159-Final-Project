@@ -1,4 +1,4 @@
-library(pls)
+library(glmnet)
 
 # read in data
 train_data <- read.csv("data/cleaned-data/train-clean-data.csv")

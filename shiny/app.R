@@ -1,18 +1,79 @@
 library(shiny)
+library(leaflet)
+library(RColorBrewer)
+library(dplyr)
+library(lattice)
+
+clean_data <- read.csv(file = "../data/cleaned-data/clean-data-w-geo.csv")
+
+ui2 <- bootstrapPage(
+  tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
+  leafletOutput("map", width = "100%", height = "100%"),
+  absolutePanel(fixed = TRUE,
+                draggable = TRUE, top = 70, left = 20, right = 'auto', bottom = "auto",
+                width = 600, height = "auto",
+                selectInput(inputId = "city", "City", choices = clean_data$CITY),
+                titlePanel("Histograms of Different Data"),
+                sidebarLayout(
+                  sidebarPanel(
+                    helpText("Please Pick a Distribution that you are interested in"),
+                    selectInput("var", 
+                                label = "Choose a variable to display",
+                                choices = c("Men Histogram", "Women Histogram",
+                                            "White Histogram", "Asian Histogram", "AIAN Histogram", "First Generation College Student",
+                                            "First Generation College Student", "Married Student", "Federal Loans", "Debt Median", 
+                                            "Mean Earnings", "Gender Diversity", "Race Divesity", "Gender Diversity", "Marital Diversity",
+                                            "First Generation Diversity Score", "Combined Diversity Score"),
+                                selected = "Men Histogram")
+                  ),
+                  mainPanel(
+                    textOutput("Stats159"),
+                    textOutput("text2"),
+                    plotOutput("histoPlot")
+                  )
+                ))
+)
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
+server <- function(input, output) {
   
-  # Expression that generates a histogram. The expression is
-  # wrapped in a call to renderPlot to indicate that:
-  #
-  #  1) It is "reactive" and therefore should re-execute automatically
-  #     when inputs change
-  #  2) Its output type is a plot
+  filter_by_city <- reactive({
+    clean_data[clean_data$CITY==input$city, ]
+  })
+  
+  filter_by_div <- reactive({
+    clean_data[clean_data$DIV_SCORE <= input$level * 0.25]
+  })
+  
+  output$map <- renderLeaflet({
+    leaflet(clean_data) %>%  addTiles(
+      urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}.png",
+      attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
+    ) %>% addCircles(data = clean_data, lat = ~LATITUDE, lng = ~LONGITUDE)
+  })
+  
+  observe({
+    leafletProxy("map", data = filter_by_city()) %>%  addTiles(
+      urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}.png",
+      attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
+    ) %>% clearShapes() %>% addCircles(~LONGITUDE,~LATITUDE,radius = 200, stroke=FALSE, fillOpacity=0.4, fillColor="red", 
+         popup = ~paste("<strong>University: </strong>", INSTNM,
+                        "<br><strong>City, State: </strong>", CITY, STABBR,
+                        "<br><strong>Percent of students with loan: </strong>", PCTFLOAN,
+                        "<br><strong>Diversity score: </strong>", DIV_SCORE,
+                        "<br><strong>Median earnings: </strong>", MN_EARN_WNE_P10
+         ) 
+      )
+  })
+  
+  observe({
+    proxy <- leafletProxy("map", data = filter_by_city())
+    proxy %>%
+      fitBounds(~min(LONGITUDE)-0.0001 , ~min(LATITUDE)-0.0001, ~max(LONGITUDE), ~max(LATITUDE))
+  })
   
   output$histoPlot <- renderPlot({
     college_data <- read.csv("../data/cleaned-data/clean-data.csv")
-    
     
     if (input$var == 'Men Histogram') {
       men_stats <- c(median(college_data$UGDS_MEN), quantile(college_data$UGDS_MEN)[2], quantile(college_data$UGDS_MEN)[4],IQR(college_data$UGDS_MEN),mean(college_data$UGDS_MEN),sd(college_data$UGDS_MEN))
@@ -114,10 +175,8 @@ shinyServer(function(input, output) {
       div_score_stats <- as.data.frame(div_score_stats)
       colnames(div_score_stats) <- "DIV_SCORE"
       hist(college_data$DIV_SCORE, main="Histogram of Diversity Score", xlab="Percent")
-      
     }
-
-    
-    
   })
-})
+}
+
+shinyApp(ui2, server)
