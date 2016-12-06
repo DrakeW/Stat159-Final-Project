@@ -1,9 +1,9 @@
 \section{Data}
 
-\title{Source}
+\txtbf{Source}
 The data used in this project was from the College Scorecard. The College Scorecard, introduced during the Obama administration, is maintained by the U.S. Department of Education. This program provides data around all colleges in the United States as a means of helping students compare different institutions to choose the most suitable for themself. The source of all of the data comes through federal reporting from colleges, such as the \href{https://www.nslds.ed.gov/nslds/nslds_SA/}{National Student Loan Data System} and the \href{http://nces.ed.gov/ipeds/}{Integrated Postsecondary Education Data System}. 
 
-\title{Content}
+\txtbf{Content}
 The content of this data set is vast, covering many important aspects around institutions. Some of the information included in the data set as a whole is: 
 
 \begin{itemize}
@@ -16,7 +16,7 @@ The content of this data set is vast, covering many important aspects around ins
 
 For our project we included all relevant information about diversity such as race, gender, marital status and completion rate, or the amount of students who successfully achieve their degree within 4 years. We limited our analysis to a case study of California, and included variables that were reported consistently across all institutions as we did not want inconsistent data to tarnish the analysis. 
 
-\title{Exploratory Data Analysis}
+\textbf{Exploratory Data Analysis}
 
 For our analysis, we used 29 variables from the College Scorecard data set and observed 394 colleges. To get an overall understanding of some of our data, refer to the summary statistics below. 
 
