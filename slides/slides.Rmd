@@ -1,0 +1,102 @@
+---
+title: "Final Project Presentation"
+author: "Junyu Wang, Nichole Rethmeier, Jie Sun, Stephen (Mingtao) Fang"
+date: "December 5, 2016"
+output: ioslides_presentation
+---
+
+## Introduciton
+In this project we address a group of administrators trying to make their school more competitive, both in diversity and graduation rates. 
+
+
+We use the College Scorecard data to apply a predictive model in order to determine factors that may influence greater diversity and graduation rates for schools within California.
+
+## Data
+
+The data used in this project was from the College Scorecard. The College Scorecard, introduced during the Obama administration, is maintained by the U.S. Department of Education. 
+
+This program provides data around all colleges in the United States as a means of helping students compare different institutions to choose the most suitable for themself. 
+
+
+## Methods
+
+- Ordinary Least Square
+- Ridge Regression
+- Lasso Regression
+- Principal Components Regression
+- Partial Least Sqaure Regression
+
+## Shrinkage Methods
+
+- Shrinkage methods involve fitting a model using all predictors. However, the estimated coefficients are shrunken towards zero relative to the least squares estimates. This shrinkage (also known as regularization) has the effect of reducing variance. 
+
+- Depending on what type of shrinkage is performed, some of the coefficients may be estimated to be exactly zero. Hence, shrinkage methods can also perform variable selection. 
+
+## Ridge Regression
+
+The ridge regression coefficient estimates are the values that minimize:
+$$\sum\limits^n_{i=1}\bigg(y_i - \beta_0 - \sum\limits^p_{j=1}\beta_j x_{ij}\bigg)^2 + \lambda \sum\limits^p_{j=1} \beta_j^2 = \text{RSS} + \lambda \sum\limits^p_{j=1} \beta^2_j$$
+Ridge regression’s advantage over least squares is rooted in the bias-variance trade-off. As $\lambda$ (a tuning parameter) increases, the flexibility of the ridge regression fit decreases, leading to decreased variance but increased bias. 
+
+
+## Lasso Regression
+
+The lasso coefficients minimize the quality:
+$$\sum\limits^n_{i=1}\bigg(y_i - \beta_0 - \sum\limits^p_{j=1}\beta_j x_{ij}\bigg)^2 + \lambda \sum\limits^p_{j=1} |\beta_j| = \text{RSS} + \lambda \sum\limits^p_{j=1} |\beta_j|$$
+Lasso overcomes the disadvantage of ridge regression by using $l_1$ penalty, which has the effect of forcing some of the coefficient estimates to be exactly equal to zero when $\lambda$ is sufficiently large. 
+  			
+## Dimension Reduction
+
+- Dimension reduction involves projecting the $p$ predictors into a $M$-dimensional subspace, where $M$ < $p$. This is achieved by computing $M$ different linear combinations, or projections, of the variables. 
+- These $M$ projections are used as predictors to fit a linear regression model by least squares. In this way, a low-dimensional set of features can be derived from a large set of variables.
+
+## Principal Components Regression			
+
+- Using the principal components analysis (PCA), this regression approach involves constructing the first $M$ principal components, $Z_1,...,Z_M$, and then using these components as the predictors in a linear regression model that is fit using least squares. 
+
+- The key idea is that often a small number of principal components suffice to explain most of the variability in the data, as well as the relationship with the response. 
+
+
+## Partial Least Squares Regression
+
+- The partial least squares (PLS) is a supervised alternative to PCR. Like PCR, PLS first identifies a new set of features $Z_1,...,Z_M$ that are linear combinations of the original features, and then fits a linear model via least squares using these $M$ new features. 
+
+- Unlike PCR, PLS identifies these new features in a supervised way — that is, it makes use of the response $Y$ in order to identify new features that not only approximate the old features well, but also that are related to the response. Roughly speaking, the PLS approach attempts to find directions that help explain both the response and the predictors. 
+
+## Steps of Analysis
+
+- Data Cleaning
+- Splitting Training Set and Test set
+- Regression Modeling
+
+## Data Cleaning
+
+- The original data set has more than 1700 columns but we certainly don't need to use all of them. Since we are measuring competitiveness in terms of diversity and completion rate, we picked related columns like `UGDS_MEN`, `UGDS_WOMEN`, `UGDS_WHITE`, `C100\_4` etc.
+
+- The columns of data we read in are mostly of type character and factor, so we need to convert them to numeric values for further computation and regression.
+
+- There are a lot of missing values in columns like `C100\_4` (completion rate) which are essential to our regression, so what we did is we first removed columns that has more than 75% NAs in it, and then we delete rows with NAs or with non-numeric data
+
+## Diversity Formula
+
+We need a way to numerically measure diversity of each school, so we came up with our own diversity score formula. In order to define diversity in terms of `Gender, Race, Marital Status, and ratio of First Generation Student`, we calculated the {chi-square} ($x_c^2 = \sum\frac{(O_i - E_i)^2}{E_i}$) of columns belonged those those 4 categories separately as their own diversity scores, then take the average as the final diversity score.
+
+## Training Set and Test Set
+- our training set is 300 (out of 394) rows randomly selected from our cleaned data set for diversity regressions, and 80 rows (out of 105) from our data set for completion rate regressions, using the $sample()$ function and the rest of rows are the test set. We also used the $set.seed()$ function for reproducibility.
+
+## Model Building
+
+- For each of our regressions we fit the model to our training set after performing 10-fold-cross-validation and resampling the data.
+
+- We use our test set to compute the Mean Square Error to compare all of our best models. Finally to finish off our regressions we used the full set of data to get our actual coefficients for the models. 
+
+- The full data set was used in combination with our regression functions to compute summary statistics such as $R^{2}$, F-Statistic, and more.
+
+
+## Results
+
+## Conclusion
+
+
+
+        
