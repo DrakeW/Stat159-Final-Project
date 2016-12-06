@@ -43,6 +43,8 @@ Stat159-Final-Project/
 	        ... (regression scripts)
 	    tests/
 	        ... (unit tests against utility functions)
+	 shiny/
+	    ... (shiny app)
 	 slides/
 	    ...
 	 session-info.txt (system info)
