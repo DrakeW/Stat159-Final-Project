@@ -1,1 +1,13 @@
-#Conclusion
+\section{Conclusion}
+
+\title{Exploratory Data Analysis}
+
+From our exploratory data analysis, we were able to gain some insights into our intial data. For example, the variables that impacted our diversity score the most were those used to compute our racial diversity score, \texttt{UGDS\_WHITE}, \texttt{UGDS\_BLACK}, \texttt{UGDS\_HISP}, \texttt{UGDS\_ASIAN}, \texttt{UGDS\_AIAN}, and \texttt{UGDS\_NHPI}. This is to be expected as the disparities between racial diversity at the university were larger than those of gender. 
+
+Another interesting correlation that was discovered during the exploratory data analysis was between \texttt{PCTFLOAN} and minority groups such as \texttt{UGDS\_BLACK} and  \texttt{UGDS\_NHPI}. Looking at the Descriptive Statistics table in \texttt{data/eda-output.txt} we can see that on average the proportion of Black students at universities in California was less than 10\% and the proportion of Native Hawaiian and Pacific Islanders at universities in California was less than 1\%. Therefore we can infer either that more federal loans were provided to minority students, which can be explained by government programs that want to encourage more minority students to attend college, or that minority students on average accepeted more federal loans, which could be due to minorities not having the ability to fully pay for college themselves. For example, the \href{https://www.apa.org/pi/ses/resources/publications/minorities.aspx}{American Psychological Association} states that "unemployment rates for African Americans are typically double those of Caucasian Americans" which could offer one possible explanation for the correlations seen in our data set. 
+
+\title{Regression Analyses}
+
+
+
+\end{document}
