@@ -54,19 +54,19 @@ locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  base     
+[1] methods   stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] rmarkdown_1.0   knitr_1.14      devtools_1.12.0 pls_2.5-0      
-[5] glmnet_2.0-5    foreach_1.4.3   Matrix_1.2-6    testthat_1.0.2 
-[9] xtable_1.8-2   
+ [1] shiny_0.14.1    rmarkdown_1.0   knitr_1.14      devtools_1.12.0
+ [5] pls_2.5-0       glmnet_2.0-5    foreach_1.4.3   Matrix_1.2-6   
+ [9] testthat_1.0.2  xtable_1.8-2   
 
 loaded via a namespace (and not attached):
  [1] Rcpp_0.12.7      lattice_0.20-33  codetools_0.2-14 digest_0.6.10   
- [5] crayon_1.3.2     withr_1.0.2      grid_3.3.1       R6_2.2.0        
- [9] magrittr_1.5     evaluate_0.9     stringi_1.1.2    tools_3.3.1     
-[13] iterators_1.0.8  stringr_1.1.0    htmltools_0.3.5  memoise_1.0.0   
-[17] methods_3.3.1   
+ [5] crayon_1.3.2     withr_1.0.2      mime_0.5         grid_3.3.1      
+ [9] R6_2.2.0         magrittr_1.5     evaluate_0.9     stringi_1.1.2   
+[13] tools_3.3.1      iterators_1.0.8  stringr_1.1.0    httpuv_1.3.3    
+[17] htmltools_0.3.5  memoise_1.0.0   
  setting  value                       
  version  R version 3.3.1 (2016-06-21)
  system   x86_64, darwin15.6.0        
@@ -85,16 +85,19 @@ loaded via a namespace (and not attached):
  foreach   * 1.4.3   2015-10-13 CRAN (R 3.3.1)
  glmnet    * 2.0-5   2016-03-17 CRAN (R 3.3.1)
  htmltools   0.3.5   2016-03-21 CRAN (R 3.3.1)
+ httpuv      1.3.3   2015-08-04 CRAN (R 3.3.1)
  iterators   1.0.8   2015-10-13 CRAN (R 3.3.1)
  knitr     * 1.14    2016-08-13 CRAN (R 3.3.1)
  lattice     0.20-33 2015-07-14 CRAN (R 3.3.1)
  magrittr    1.5     2014-11-22 CRAN (R 3.3.1)
  Matrix    * 1.2-6   2016-05-02 CRAN (R 3.3.1)
  memoise     1.0.0   2016-01-29 CRAN (R 3.3.1)
+ mime        0.5     2016-07-07 CRAN (R 3.3.1)
  pls       * 2.5-0   2015-08-22 CRAN (R 3.3.1)
  R6          2.2.0   2016-10-05 CRAN (R 3.3.1)
  Rcpp        0.12.7  2016-09-05 CRAN (R 3.3.1)
  rmarkdown * 1.0     2016-07-08 CRAN (R 3.3.1)
+ shiny     * 0.14.1  2016-10-05 CRAN (R 3.3.1)
  stringi     1.1.2   2016-10-01 CRAN (R 3.3.1)
  stringr     1.1.0   2016-08-19 CRAN (R 3.3.1)
  testthat  * 1.0.2   2016-04-23 CRAN (R 3.3.1)

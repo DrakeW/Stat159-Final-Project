@@ -7,6 +7,7 @@ library(knitr)
 library(rmarkdown)
 library(xtable)
 library(Matrix)
+library(shiny)
 
 sink("../../session-info.txt", append = TRUE)
 cat("Session Information\n\n")
