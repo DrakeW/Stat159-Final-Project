@@ -7,11 +7,21 @@
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
-\begin{document}
 
-\section{Abstract}
+\title{Final Project Report}
 \author{Junyu Wang, Jie Sun, Mingtao Fang, Nichole Rethmeier}
 \date{\today}
 
+\begin{document}
+<<setup, include=FALSE, cache=FALSE, echo=FALSE>>=
+library(knitr)
+opts_chunk$set(fig.align='center', fig.show='hold')
+options(formatR.arrow=TRUE,width=90)
+@
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+\section{Abstract}
 
 In this project we address a group of administrators trying to make their school more competitive, both in diversity and graduation rates. We use the College Scorecard data to apply a predictive model in order to determine factors that may influence greater diversity and graduation rates for schools within California. For our regression analyses, we refered to \textit{An Introduction to Statistical Learning} by Gareth James et al. To learn more about the College Scorecard program which provided the data, refer to the U.S. Department of Education's at the \href{https://collegescorecard.ed.gov/}{College Scorecard Site}.  

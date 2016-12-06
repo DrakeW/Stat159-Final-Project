@@ -84,7 +84,7 @@ session:
 # assemble sections of report into one and convert it to PDF format
 report:
 	cd report; cat $(report_sections) > report.Rnw
-	Rscript -e "library(rmarkdown); render('report/report.Rnw', 'pdf_document')"
+	Rscript -e 'library(knitr); knit("report/report.Rnw")'
 	
 # generate slides
 slides:
