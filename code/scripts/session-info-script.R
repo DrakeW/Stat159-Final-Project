@@ -5,6 +5,8 @@ library(pls)
 library(devtools)
 library(knitr)
 library(rmarkdown)
+library(xtable)
+library(Matrix)
 
 sink("../../session-info.txt", append = TRUE)
 cat("Session Information\n\n")
