@@ -9,7 +9,7 @@ load("../data/eda-output.RData")
 print(xtable(correlation_matrix, caption=c("Correlation Matrix")), comment=F, scalebox='0.3')
 @
 
-We regressed diversity scores and graduation rates on different predictors separately. For diversity model, after fitting all models to the full data sets, we summarized coefficients and test MSE values in Table 1-2. While the coefficients vary across models, we can spot some trends shared in common. The predictor that had the largest affect on diversity score was level of institution \tttext{ICLEVEL}, which conveys the highest level of award offered at the institution: 4-year, 2-year, or less-than-2-year. There are several other less influential elements that identify the degree profile of the institution including highest degree \tttext{HIGHDEG} and predominant undergraduate degree \tttext{PREDDEG}. Percent of undergraduates receiving federal Loans \tttext{PCTFLOAN} and governance structure \tttext{CONTROL} (public/private nonprofit/private for-profit) are also identified as related predictors by all models except Lasso. In contrast, the predictors \tttext{DEBT_MDN} and \tttext{MN_EARN_WNE_P10}, which stand for cumulative median debt and mean earnings, barely affect diversity of colleges.
+We regressed diversity scores and graduation rates on different predictors separately. For diversity model, after fitting all models to the full data sets, we summarized coefficients and test MSE values. While the coefficients vary across models, we can spot some trends shared in common. The predictor that had the largest effect on diversity score was level of institution \tttext{ICLEVEL}, which conveys the highest level of award offered at the institution: 4-year, 2-year, or less-than-2-year. There are several other less influential elements that identify the degree profile of the institution including highest degree \tttext{HIGHDEG} and predominant undergraduate degree \tttext{PREDDEG}. Percent of undergraduates receiving federal Loans \tttext{PCTFLOAN} and governance structure \tttext{CONTROL} (public/private nonprofit/private for-profit) are also identified as related predictors by all models except Lasso. In contrast, the predictors \tttext{DEBT_MDN} and \tttext{MN_EARN_WNE_P10}, which stand for cumulative median debt and mean earnings, barely affect diversity of colleges.
 
 <<div_table, echo=FALSE, results=tex>>=
 load("../data/regressions/ols-diversity-model.RData")
@@ -44,7 +44,7 @@ div_mse_table = xtable(div_mse_df, digits=4, caption = "Test MSE Values for All 
 print(div_mse_table, comment=FALSE)
 @
 
-To analyze potential factors that affect graduation rates, we generated another model. 
+To analyze factors that affect graduation rates, we generated another model. Surprisingly, Lasso eliminated all variables except \tttext{MN_EARN_WNE_P10} though the coefficient estimate for \tttext{MN_EARN_WNE_P10} is pretty close to 0. And OLS generated an oddly large estimate for \tttext{UGDS_AIAN}, which might result from outliers. Among the rest predictors, \tttext{UGDS_MEN}, which reflects male-to-female ratio, had a relatively large coefficient, which makes it a prominent predictor. \tttest{FIRST_GEN}, which calculates the share of students in which neither parent completed college, also affects the graduation rates. Other influential predicts include those related to ethnic ratio (\tttest{UGDS_*}) or degree profile such as \tttext{PREDDEG} as explained in the previous model.
 
 <<grad_table, echo=FALSE, results=tex>>=
 ols_grad = as.vector(ols.coef.grad[-1])
@@ -61,7 +61,7 @@ grad_table = xtable(grad_df, digits=c(0,3,3,6,3,3), caption = "Regression Coeffi
 print(grad_table, comment=FALSE)
 @
 
-In terms of model comparison, PCR and PLSR fit better on the data sets again.
+In terms of model comparison, PCR and PLSR fit better on the data sets, which means dimention reduction methods generally outperform shrinkage methods on our data sets.
 
 <<grad_mse_table, echo=FALSE, results=tex>>=
 grad_mse_df = data.frame(row.names=c("Test MSE"), 
