@@ -86,6 +86,16 @@ png("images/american-indian-histogram.png")
 hist(college_data$UGDS_AIAN, main="Histogram of American Indian", xlab="Percent")
 dev.off() 
 
+##NHPI
+
+nhpi_stats <- c(median(college_data$UGDS_NHPI), quantile(college_data$UGDS_NHPI)[2], quantile(college_data$UGDS_NHPI)[4],IQR(college_data$UGDS_NHPI),mean(college_data$UGDS_NHPI),sd(college_data$UGDS_NHPI))
+names(nhpi_stats) <- c("Median", "First Quartile", "Third Quartile", "IQR", "Mean", "Std. Deviation")
+nhpi_stats <- as.data.frame(nhpi_stats)
+colnames(nhpi_stats) <- "NATIVE HAWAIIAN & PACFIC ISLANDER"
+
+png("images/nhpi-histogram.png")
+hist(college_data$UGDS_NHPI, main="Histogram of Native Hawaiian & Pacific Islander", xlab="Percent")
+dev.off() 
 
 ##FIRST_GEN 
 
@@ -210,21 +220,13 @@ dev.off()
 
 ###Descriptive Stats of All Quantitative Variables 
 
-quant_var_stats <- data.frame(men_stats, women_stats, white_stats, black_stats, hisp_stats, asian_stats, aian_stats, first_gen_stats, married_stats, pctfloan_stats, debt_mdn_stats, mn_earn_stats, gen_div_stats, race_div_stats, marital_div_stats, first_gen_div_stats, div_score_stats)
+quant_var_stats <- data.frame(men_stats, women_stats, white_stats, black_stats, hisp_stats, asian_stats, aian_stats, nhpi_stats, first_gen_stats, married_stats, pctfloan_stats, debt_mdn_stats, mn_earn_stats, gen_div_stats, race_div_stats, marital_div_stats, first_gen_div_stats, div_score_stats)
 
 ###Correlation Matrix
 
 mat <- signif(cor(college_data[c(5:15,19,23:29)]),2)
 mat[lower.tri(mat)]=""
 correlation_matrix <- data.frame(mat)
-
-##eda-output.txt
-sink("data/eda-output.txt")
-print("Descriptive Statistics")
-print(quant_var_stats)
-print("Correlation Matrix")
-print(correlation_matrix)
-sink()
 
 ##Frequency Table
 
@@ -234,6 +236,16 @@ frequencyprop_table <- prop.table(frequencyct_table)
 frequencyprop_final <- subset(as.data.frame(frequencyprop_table), Freq>0)
 frequency_comb <- merge(frequencyct_final, frequencyprop_final, by=c("Var1", "Var2", "Var3", "Var4"))
 colnames(frequency_comb) <- c("Highest Degree", "Predominant Degree", "Control", "Institution Level", "Frequency", "Frequency Proportion")
+
+##eda-output.txt
+sink("data/eda-output.txt")
+print("Descriptive Statistics")
+print(quant_var_stats)
+print("Correlation Matrix")
+print(correlation_matrix)
+print("Frequency Table")
+print(frequency_comb)
+sink()
 
 ##Barcharts 
 png("images/highdeg-barchart.png")
