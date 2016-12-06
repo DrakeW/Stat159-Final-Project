@@ -1,6 +1,9 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[]{textcomp}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
 \usepackage[]{amsmath}
 \usepackage[]{amssymb}
 \usepackage[]{enumerate}
@@ -17,6 +20,10 @@
 library(knitr)
 opts_chunk$set(fig.align='center', fig.show='hold')
 options(formatR.arrow=TRUE,width=90)
+library(xtable)
+library(Matrix)
+options(xtable.comment = FALSE,
+        xtable.table.placement = "H")
 @
 \SweaveOpts{concordance=TRUE}
 
