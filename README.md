@@ -22,19 +22,20 @@ Stat159-Final-Project/
 	LICENSE
 	report/
 		sections/
-			00-abstract.Rmd
-			01-introduction.Rmd
-			02-data.Rmd
-			03-methods.Rmd
-			04-analysis.Rmd
-			05-results.Rmd
-			06-conclusions.Rmd
-		report.Rmd
+			00-abstract.Rnw
+			01-introduction.Rnw
+			02-data.Rnw
+			03-methods.Rnw
+			04-analysis.Rnw
+			05-results.Rnw
+			06-conclusions.Rnw
+		report.Rnw
 		report.pdf
 	images/
 		... (dynamically generated images)
 	data/
-	    Credit.csv
+	    cleaned-data/
+                ... (clean data)
 	    ... (dynamically generated data)
 	code/
 	    functions/
@@ -43,11 +44,11 @@ Stat159-Final-Project/
 	        ... (regression scripts)
 	    tests/
 	        ... (unit tests against utility functions)
-	 shiny/
+	shiny/
 	    ... (shiny app)
-	 slides/
+	slides/
 	    ...
-	 session-info.txt (system info)
+	session-info.txt (system info)
 ```
 
 Instruction to Reproduce
