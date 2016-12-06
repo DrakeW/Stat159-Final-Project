@@ -6,3 +6,4 @@
 *.Rproj
 *Most-Recent-*.csv
 .Rapp.history
+.gitkeep

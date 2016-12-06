@@ -84,7 +84,7 @@ session:
 # assemble sections of report into one and convert it to PDF format
 report:
 	cd report; cat $(report_sections) > report.Rnw
-	Rscript -e 'library(knitr); knit("report/report.Rnw")'
+	cd report; R -e "library(knitr); Sweave2knitr('report.rnw')"; Rscript -e "library(knitr); knit('report-knitr.rnw')"; pdflatex report-knitr.tex; mv report-knitr.pdf report.pdf
 	
 # generate slides
 slides:
@@ -94,6 +94,5 @@ slides:
 clean:
 	rm -f report/report.pdf
 	rm -f slides/slides.html
-
 
 
